@@ -56,6 +56,7 @@ bool Polynomial::set_coef(int index, T c) {
 	return true;
 }
 
+
 vector<double> Polynomial::get_coefs() const {
 	return values;
 }
@@ -63,6 +64,15 @@ vector<double> Polynomial::get_coefs() const {
 template<typename T>
 bool Polynomial::set_coefs(vector<T> cs) {
 	values = cs;
+	return true;
+}
+
+template<typename T>
+bool Polynomial::set_coefs(T cs, int size, double (* visit_function)(T& t, int i)) {
+	values.resize(size);
+	for (int i = 0; i < size; i++) {
+		values[i] = visit_function(cs, i);
+	}
 	return true;
 }
 

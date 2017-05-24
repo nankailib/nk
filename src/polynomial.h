@@ -49,6 +49,8 @@ class Polynomial {
 		vector<double> get_coefs() const;
 		template<typename T>
 		bool set_coefs(vector<T> cs);
+		template<typename T>
+		bool set_coefs(T cs, int size, double (* visit_function)(T& t, int i));
 
 		int get_power() const {
 			return power;
