@@ -2,14 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 project(nk CXX)
 
 ###############################################################################################################################
-#add_definitions (-D__QUESTION_TRACE_CHECK_ENABLED)
-#add_definitions (-D__TRAINSET_SIZE_RESTRICTED)
-
 add_definitions (-D_DBG_)
 #add_definitions (-D_PRT_)
-#add_definitions (-D__PRT_DEBUG)
-#add_definitions (-D__PRT_TRACE)
-#add_definitions (-D__PRT_TESTCASE)
 #add_definitions (-D__PRT_GSLSOLVE)
 #add_definitions (-D__PRT_Z3SOLVE)
 #add_definitions (-D__PRT_POLYNOMIAL)
@@ -45,19 +39,16 @@ find_package(Z3 REQUIRED)
 #find_package(GSL REQUIRED)
 
 # add include dir and source dir into project
-include_directories (.)
-aux_source_directory(. SRCS)
+file(GLOB HEADER "src/*.h")
+include_directories (src)
+aux_source_directory(src SRCS)
 #aux_source_directory(. src DIR_SRCS)
 
 add_library(nk SHARED ${SRCS})
 set_target_properties(nk PROPERTIES VERSION 1.0)
 install(TARGETS nk LIBRARY DESTINATION lib)
 #install(TARGETS nk ARCHIVE DESTINATION lib)
-install(FILES polynomial.h common.h color.h dbg.h DESTINATION include/nk)
-#target_link_libraries(nk ${GSL_LIBRARIES})
+#install(FILES src/polynomial.h src/common.h src/color.h src/dbg.h DESTINATION include/nk)
+install(FILES ${HEADER} DESTINATION include/nk)
 
-#add_executable(myExe ${SRCS})
-
-add_executable(nkExe ${SRCS})
-target_link_libraries(nkExe ${GSL_LIBRARIES})
-target_link_libraries(nkExe ${Z3_LIBRARY})
+add_subdirectory(example)

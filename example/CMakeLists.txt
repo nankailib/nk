@@ -13,11 +13,9 @@ set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/../cmake/")
 find_package(Z3 REQUIRED)
-#find_package(GSL REQUIRED)
+find_package(GSL REQUIRED)
 
-include_directories (.)
 aux_source_directory(. SRCS)
-
 
 add_executable(testnk ${SRCS})
 target_link_libraries(testnk ${GSL_LIBRARIES})
