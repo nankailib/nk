@@ -50,5 +50,3 @@ install(TARGETS nk LIBRARY DESTINATION lib)
 #install(TARGETS nk ARCHIVE DESTINATION lib)
 #install(FILES src/polynomial.h src/common.h src/color.h src/dbg.h DESTINATION include/nk)
 install(FILES ${HEADER} DESTINATION include/nk)
-
-add_subdirectory(example)
